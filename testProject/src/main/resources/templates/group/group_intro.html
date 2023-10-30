@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorate="@{/layout/layout}">
+
+<head>
+<style th:inline="css" type="text/css">
+.manager_wrap {
+   width: 1500px;
+   margin: 30px auto;
+}
+
+.manager_title {
+   margin-bottom: 30px;
+}
+
+.manager_title strong {
+   font-size: 24px;
+}
+
+.manager_title p {
+   margin-top: 5px;
+   font-size: 18px;
+}
+
+
+
+
+
+
+
+.manager_write .title,
+.manager_write .info {
+    padding: 15px 15px 5px 15px;
+}
+
+.manager_write .info {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #000;
+    font-size: 0;
+}
+
+.manager_write .title dl {
+    font-size: 0;
+}
+
+.manager_write .info dl {
+    display: inline-block;
+    width: 50%;
+    vertical-align: middle;
+}
+
+.manager_write .info dl label {
+    font-size: 16px;
+}
+
+.manager_write .title dt,
+.manager_write .title dd,
+.manager_write .info dt,
+.manager_write .info dd {
+    display: inline-block;
+    vertical-align: middle;
+    
+}
+
+.manager_write .title dt,
+.manager_write .info dt {
+    width: 100px;
+}
+
+.manager_write .title dd {
+    width: calc(100% - 100px);
+}
+
+.manager_write .title input[type="text"],
+.manager_write .info input[type="text"],
+.manager_write .info input[type="password"] {
+    padding: 10px;
+    box-sizing: border-box;
+    border-color : 1px soild #cccccc;
+    border-radius: 10px;
+}
+
+.manager_write .title input[type="text"] {
+    width: 80%;
+}
+
+.manager_write .cont {
+    border-bottom: 1px solid #000;
+}
+
+.manager_write .cont textarea {
+    display: block;
+    width: 100%;
+    height: 300px;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 0;
+    resize: vertical;
+}
+
+
+.group_change {
+   margin-top: 30px;
+}
+
+.manager_write .managerbtn{
+   width: auto;
+   height: 40px;
+   border-radius: 16px;
+   box-shadow: -5px -5px 10px #fff, 5px 5px 8px #a9a9a9;
+   font-size: 16px;
+   font-weight: bold;
+   background-color: none;
+   border-color:  #ff4b2b;
+}
+
+.manager_write .managerbtn:hover{
+   background-color: #ff4b2b;
+   color: white;
+}
+
+.manager_write .group_change input[type="text"],
+.manager_write .info input[type="text"],
+.manager_write .info input[type="password"] {
+    padding: 10px;
+    box-sizing: border-box;
+    border-color : 1px soild #cccccc;
+    border-radius: 10px;
+}
+
+.manager_write .group_change .group_name .writebtn{
+   width: 80px;
+   height: 40px;
+   border-radius: 16px;
+   box-shadow: -5px -5px 10px #fff, 5px 5px 8px #a9a9a9;
+   font-size: 16px;
+   font-weight: bold;
+   background-color: #ff4b2b;
+   color: white;
+}
+
+.bt_wrap .writebtn:hover {
+   background-color: none;
+   border-color: #ff4b2b;
+}
+
+
+.gruop_name {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .gruop_name li {
+    margin-right: 10px; /* 원하는 간격으로 조절 */
+  }
+  
+  .gruop_name li>a {
+   font-size: 18px;
+   text-decoration: none;
+   color: black;
+  }
+  
+  .gruop_name li .title {
+   font-weight: bold;
+   
+  }
+  
+  .gruop_name li .btn {
+   width: 60px;
+   height: 40px;
+   padding : 7.5px 8px;
+   border-radius: 16px;
+   box-shadow: -5px -5px 10px #fff, 5px 5px 8px #a9a9a9;
+   font-size: 16px;
+   font-weight: bold;
+   background-color: #ff4b2b;
+   color: white;
+  }
+  
+ .gruop_name li .btn:hover {
+   background-color: none;
+   border-color: #ff4b2b;
+}
+   .manager_wrap .manager_title {
+   border-bottom: 2px solid black;
+}
+  
+.manager_wrap .manager_title .Withdrawal{
+   width: auto;
+   height: 40px;
+   padding: 7.5px 8px;
+   border-radius: 16px;
+   box-shadow: -5px -5px 10px #fff, 5px 5px 8px #a9a9a9;
+   font-size: 16px;
+   font-weight: bold;
+   background-color: #ff4b2b;
+   color: white;
+   margin-left: 1200px;
+   margin-top: -100px;
+}
+
+.manager_wrap .manager_title .Withdrawal:hover{
+    background-color: none;
+   border-color: #ff4b2b;
+ }
+  
+</style>
+</head>
+
+
+<th:block layout:fragment="content">
+<div class="manager_wrap">
+   <div class="manager_title">
+      <form method="post" th:action="'/group_x/' + ${groupId}">
+         <input type="hidden" name="groupId" th:value="${groupId}"/>
+           <strong>그룹 소개</strong>
+           <p th:text="${groupName + ' 그룹을 소개합니다.'}"></p>
+         <input type="submit" class="btn Withdrawal" value="그룹탈퇴">
+      </form>
+   </div>
+
+      
+      
+      <div class="manager_write_wrap">
+         <div class="manager_write">
+            
+            <div class="group_change">
+            
+               <a th:text="${'그룹생성일 &nbsp;: &nbsp; ' + time}"  class="btn managerbtn" style="margin: 0 20px 20px 40px;">
+               </a><br>
+            
+               <ul class="gruop_name" style="list-style: none;">
+                  <li style="border: 1px solid black; border-radius: 20px; width: 1000px; height: auto; padding: 20px 10px 20px 10px;">
+                     <a th:text="${'그룹 소개 &nbsp; : &nbsp;' + groupInc}" class="title"></a>
+                  </li>
+               </ul>
+               
+            </div>
+         </div>
+         
+      </div>
+</div>
+</th:block>
+</html>
