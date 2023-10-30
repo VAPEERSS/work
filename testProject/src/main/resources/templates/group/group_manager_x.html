@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="@{/layout/layout}">
+
+<title>Title</title>
+
+<head>
+<style th:inline="css" type="text/css">
+.board_wrap {
+	width: 1500px;
+	margin: 30px auto;
+}
+
+.board_title {
+	margin-bottom: 30px;
+}
+
+.board_title strong {
+	font-size: 24px;
+}
+
+.board_title p {
+	margin-top: 5px;
+	font-size: 18px;
+}
+
+.board_wrap .apply {
+	width: auto;
+	height: 40px;
+	padding: 7.5px 8px;
+	border-radius: 16px;
+	box-shadow: -5px -5px 10px #fff, 5px 5px 8px #a9a9a9;
+	font-size: 16px;
+	font-weight: bold;
+	background-color: #ff4b2b;
+	color: white;
+	margin-left: 20px;
+}
+
+.board_wrap .apply:hover {
+	background-color: none;
+	border-color: #ff4b2b;
+}
+</style>
+</head>
+
+
+
+<th:block layout:fragment="content">
+	<body>
+		<div class="board_wrap" >
+			<div class="board_title" style="margin-bottom: 50px;">
+				<strong>그룹 관리자</strong>
+				<p>그룹 관리자 페이지입니다.</p>
+				<hr>
+			</div>
+			<h2>관리자 권한이 없습니다.</h2>
+			
+		</div>
+	</body>
+</th:block>
+</html>
