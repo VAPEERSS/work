@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="@{/layout/layout}">
+
+<head>
+<style th:inline="css" type="text/css">
+.board_wrap {
+	width: 1500px;
+	margin: 30px auto;
+}
+
+.board_title {
+	margin-bottom: 30px;
+}
+
+.board_title strong {
+	font-size: 24px;
+}
+
+.board_title p {
+	margin-top: 5px;
+	font-size: 18px;
+}
+
+.board_view {
+	width: 100%;
+	border-top: 2px solid #000;
+}
+
+.board_view .title {
+	padding: 15px;
+	border-bottom: 1px solid #ddd;
+	font-size: 20px;
+}
+
+.board_view .info {
+	padding: 15px;
+	height: 60px;
+	border-bottom: 1px solid #999;
+	font-size: 0;
+}
+
+.board_view .info dl {
+	position: relative;
+	display: inline-block;
+	padding: 0 20px;
+}
+
+.board_view .info dl:first-child {
+	padding-left: 0;
+}
+
+.board_view .info dl::before {
+	content: "";
+	position: absolute;
+	top: 3px;
+	left: 0;
+	display: block;
+	width: 1px;
+	height: 26px;
+	background: #ddd;
+}
+
+.board_view .info dl:first-child::before {
+	display: none;
+}
+
+.board_view .info dl dt, .board_view .info dl dd {
+	display: inline-block;
+	font-size: 16px;
+}
+
+.board_view .info dl dd {
+	margin-left: 10px;
+	color: #777;
+}
+
+.board_view .cont {
+	padding: 15px;
+	border-bottom: 1px solid #000;
+	line-height: 160%;
+	font-size: 16px;
+}
+
+.bt_wrap {
+	margin-top: 30px;
+	text-align: center;
+}
+
+.bt_wrap .writebtn {
+	width: 80px;
+	height: 40px;
+	border-radius: 16px;
+	box-shadow: -5px -5px 10px #fff, 5px 5px 8px #a9a9a9;
+	font-size: 16px;
+	font-weight: bold;
+	background-color: #ff4b2b;
+	color: white;
+}
+
+.bt_wrap .writebtn:hover {
+	background-color: none;
+	border-color: #ff4b2b;
+}
+
+.comment_wrap .comment_input {
+	border-radius: 10px;
+	height: 30px;
+	font-size: 14px;
+	padding: 5px;
+}
+
+.comment_wrap .writebtn {
+	width: 60x;
+	height: 30px;
+	border-radius: 14px;
+	box-shadow: -5px -5px 10px #fff, 5px 5px 8px #a9a9a9;
+	font-size: 14px;
+	font-weight: bold;
+	background-color: #ff4b2b;
+	color: white;
+	line-height: 12px;
+	margin-top: -20px;
+}
+
+.comment_wrap .writebtn:hover {
+	background-color: none;
+	border-color: #ff4b2b;
+}
+
+.comment_wrap .comment_list {
+	list-style: none;
+}
+
+.comment_wrap .comment_list .writer {
+	text-decoration: none;
+	font-size: 16px;
+	color: black;
+	font-weight: bold;
+}
+
+.comment_wrap .comment_list .comment_content {
+	text-decoration: none;
+	font-size: 16px;
+	color: black;
+}
+
+.comment_wrap .comment_list .comment_time {
+	text-decoration: none;
+	font-size: 11px;
+	color: #aaa;
+	margin-top: -10px;
+}
+
+.comment_wrap .comment_list .comment_line {
+	width: 700px;
+	color: black;
+}
+
+.comment_wrap  .comment_remove {
+	width: 25px;
+	height: 25px;
+	padding: 5px;
+	border-radius: 20%;
+	box-shadow: 2px 2px 2px #a9a9a9;
+	font-size: 10px;
+	font-weight: bold;
+	background-color: #ff4b2b;
+	color: white;
+	line-height: 15px;
+}
+
+.comment_wrap .comment_remove:hover {
+	background-color: none;
+	border-color: #ff4b2b;
+}
+</style>
+</head>
+
+
+<th:block layout:fragment="content">
+	<div class="board_wrap">
+		<div class="board_title">
+			<strong>공지사항</strong>
+			<p>공지사항을 빠르고 정확하게 안내해드립니다.</p>
+		</div>
+		<div class="board_view_wrap">
+			<div class="board_view">
+				<div class="title">v2.2업데이트 하였습니다.</div>
+				<div class="info">
+					<dl>
+						<dt>번호</dt>
+						<dd>1</dd>
+					</dl>
+					<dl>
+						<dt>글쓴이</dt>
+						<dd>관리자</dd>
+					</dl>
+					<dl>
+						<dt>작성일</dt>
+						<dd>2023.9.15</dd>
+					</dl>
+					<dl>
+						<dt>조회</dt>
+						<dd>1167</dd>
+					</dl>
+				</div>
+				<div class="cont">
+					v2.2업데이트 하였습니다.<br> 업데이트 된 내용은 안정화 작업입니다. 감사합니다.
+				</div>
+			</div>
+
+			<br>
+
+			<!-- <div class="comment_wrap">
+				<h6 style="font-weight: bold;">댓글</h6>
+				댓글 입력 필드
+				<textarea class="comment_input" placeholder="댓글을 입력하세요" rows="3"
+					cols="100"></textarea>
+				제출 버튼
+				<button class="btn writebtn" onclick="location.href='view'">등록</button>
+				<br>
+				<br>
+				댓글 리스트
+				<ul class="comment_list">
+					<li class="comment"><a class="writer">뿡뿡이</a>
+						<button class="btn comment_remove">X</button>
+						<br> <a class="comment_content">방구 뿡뿡</a><br> <a
+						class="comment_time">2023.09.15</a>
+						<hr class="comment_line"></li>
+					<li><a class="writer">짱구</a><br> <a
+						class="comment_content">부리부리 대마왕</a><br> <a
+						class="comment_time">2023.09.15</a>
+						<hr class="comment_line"></li>
+					<li><a class="writer">짱구</a><br> <a
+						class="comment_content">부리부리 대마왕</a><br> <a
+						class="comment_time">2023.09.15</a>
+						<hr class="comment_line"></li>
+					<li><a class="writer">짱구</a><br> <a
+						class="comment_content">부리부리 대마왕</a><br> <a
+						class="comment_time">2023.09.15</a>
+						<hr class="comment_line"></li>
+				</ul>
+			</div> -->
+			
+			<div class="bt_wrap">
+
+					<a class="btn writebtn" href="notice" style="margin-right: 10px">목록</a>
+				</div>
+		</div>
+	</div>
+	</body>
+</th:block>
+</html>
